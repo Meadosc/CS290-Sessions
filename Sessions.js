@@ -15,6 +15,8 @@ app.set('port', 3000);
 //Server Stuff*****************************************************************************
 var session = require('express-session'); //This runs the session module
 app.use(session({secret:'SuperSecretPassword'}));
+
+var request = require('request'); // This allows requests
 //*****************************************************************************************
 
 //GET Request *******************************************************************************
