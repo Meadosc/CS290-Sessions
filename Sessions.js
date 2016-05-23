@@ -55,13 +55,15 @@ app.post('/',function(req,res){
     req.session.toDo.push({"name":req.body.name,"city":req.body.city, "temp":req.body.temp, "id":req.session.curId});
     req.session.curId++;
     
+    console.log('logging req.body.city outside of api call:' req.body.city); //debug
+    
     //Weather API request*************************************************************
     var apiKey = "57a9cc64f81ad38e228a7ceeeaaf2527";
     request('http://api.openweathermap.org/data/2.5/weather?q=' + req.body.city + "&units=imperial" + '&APPID=' + apiKey, function(err, response, body){
     if(!err && response.statusCode < 400){
       context.owm = body;
       console.log(body);
-      console.log('hello');
+      console.log('hello'); //debug
     } else {
       console.log(err);
       if(response){
