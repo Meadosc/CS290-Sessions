@@ -18,19 +18,21 @@ app.use(session({secret:'SuperSecretPassword'}));
 //*****************************************************************************************
 
 //Home Page *******************************************************************************
-app.get('/',function(req,res){
-  res.render('home');
+app.get('/',function(req,res,next){
+  var context = {};
+  //If there is no session, go to the main page.
+  if(!req.session.name){
+    res.render('newSession', context);
+    return;
+  }
+  context.name = req.session.name;
+  context.toDoCount = req.session.toDo.length || 0;
+  context.toDo = req.session.toDo || [];
+  console.log(context.toDo);
+  res.render('toDo',context);
 });
 //*****************************************************************************************
 
-//Count Page *******************************************************************************
-app.get('/count',function(req,res){
-  var context = {};
-  context.count = req.session.count || 0;
-  req.session.count = context.count + 1;
-  res.render('counter', context);
-});
-//*****************************************************************************************
 
 app.use(function(req,res){
   res.status(404);
