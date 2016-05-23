@@ -61,6 +61,7 @@ app.post('/',function(req,res){
     if(!err && response.statusCode < 400){
       context.owm = body;
       console.log(body);
+      console.log('hello');
     } else {
       console.log(err);
       if(response){
