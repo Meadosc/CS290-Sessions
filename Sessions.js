@@ -55,7 +55,7 @@ app.post('/',function(req,res){
     req.session.toDo.push({"name":req.body.name,"city":req.body.city, "temp":req.body.temp, "id":req.session.curId});
     req.session.curId++;
     
-    console.log('logging req.body.city outside of api call:' req.body.city); //debug
+    console.log('logging req.body.city outside of api call:' + req.body.city); //debug
     
     //Weather API request*************************************************************
     var apiKey = "57a9cc64f81ad38e228a7ceeeaaf2527";
